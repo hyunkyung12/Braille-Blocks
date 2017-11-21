@@ -1,0 +1,14 @@
+{
+    "label_dic" : {
+        "0" : 0,
+        "1" : 1
+    },
+    "resizing" : [32, 32],
+    "train_size" : 900,
+    "test_size" : 100,
+    "ss_dic" : {
+    	"scale" : 100,
+    	"sigma" : 0.5,
+    	"min_size" : 10
+    }
+}
