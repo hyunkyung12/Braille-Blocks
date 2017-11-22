@@ -159,8 +159,10 @@ class dataSet():
         return self.train_image[ind], self.train_label[ind]
 
     def grayscale(self):
-        self.train_image = np.mean(self.train_image, axis=3, keepdims=True)
-        self.test_image = np.mean(self.test_image, axis=3, keepdims=True)
+        RGB_to_L = np.array([[[[0.299,0.587,0.114]]]])
+        self.train_image = np.sum(self.train_image * RGB_to_L, axis=3, keepdims=True)
+        self.test_image = np.sum(self.test_image * RGB_to_L, axis=3, keepdims=True)
+        print(self.train_image.shape)
 
     def sample_image(self, index=0):
         if self.train_image.shape[3] == 3:

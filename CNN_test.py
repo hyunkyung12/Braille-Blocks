@@ -5,7 +5,7 @@ import solver
 import model
 import dataSet as ds
 
-epochs = 200
+epochs = 2000
 batch_size = 128
 learning_rate = 1e-4
 #data = pickle.load(open('bnb.p', 'rb'))
@@ -13,7 +13,7 @@ learning_rate = 1e-4
 d = ds.dataSet()
 #d.temp_load_data()
 d.load_data(dir='image', test_dir='test_image')
-#d.grayscale()
+d.grayscale()
 
 sess = tf.Session()
 CNN_model = model.two_layer_CNN(sess = sess, input_shape=d.train_image.shape, n_class = d.n_class)

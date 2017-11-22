@@ -33,8 +33,8 @@ class Solver:
                 self._train_acc_history.append(self.accuracy(self.batch_x, self.batch_y))
                 self._test_acc_history.append(self.accuracy(self.val_x, self.val_y))
             if verbose:
-                if i % print_frequency == 0:
-                    self._print_train_process(epoch=i)
+                if i % print_frequency == print_frequency-1:
+                    self._print_train_process(epoch=i+1)
 
 
     def loss(self):
@@ -50,7 +50,7 @@ class Solver:
         print('accuracy : {:.4f}'.format(sum(result) / len(result)))
 
     def _print_train_process(self, epoch):
-        print('epoch : {}, loss : {:.4f}, train_accuracy : {:.4f}, test_accuracy : {:.4f}'.format(
+        print('epoch : {:>4}, loss : {:.4f}, train_accuracy : {:.4f}, test_accuracy : {:.4f}'.format(
             epoch, self.loss(), self.accuracy(self.batch_x, self.batch_y), self.accuracy(self.val_x, self.val_y)))
 
     def accuracy(self, x_data, y_data):
