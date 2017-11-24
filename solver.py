@@ -1,5 +1,6 @@
 import tensorflow as tf
 import matplotlib.pyplot as plt
+import os
 
 class Solver:
     '''
@@ -45,6 +46,10 @@ class Solver:
         feed_predict = {self._model._x: x_data}
         return self._sess.run(fetches=self._model._prediction, feed_dict=feed_predict)
 
+    def predict_softmax_score(self, x_data):
+        feed_predict = {self._model._x: x_data}
+        return self._sess.run(fetches=self._model._hypothesis, feed_dict=feed_predict)
+
     def print_accuracy(self, x_data, y_data):
         result = y_data == self.predict(x_data=x_data)
         print('accuracy : {:.4f}'.format(sum(result) / len(result)))
@@ -70,3 +75,14 @@ class Solver:
         plt.legend()
         plt.title('accuracy')
         plt.show()
+
+
+    def model_save(self):
+        saver = tf.train.Saver()
+        if not os.path.isdir("saved"):
+            os.mkdir("saved")
+        saver.save(self._sess, "saved/train")
+
+    def model_load(self):
+        saver = tf.train.Saver()
+        saver.restore(self._sess, tf.train.latest_checkpoint("saved"))

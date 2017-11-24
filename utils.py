@@ -53,10 +53,12 @@ def refining_ss_regions(ss_regions):
     for r in ss_regions:
         if r['rect'] in candidates: # -1
             continue
-        if r['size'] < 2000: # -2
+        if r['size'] < 2000 or r['size'] > 10000: # -2
             continue
         x, y, w, h = r['rect']
-        if w / h > 1.2 or h / w > 1.2: # -3
+        if w / h > 2.5 or h / w > 2.5 : # -3
+            continue
+        if min(w, h) < 20:
             continue
         candidates.add(r['rect'])
 

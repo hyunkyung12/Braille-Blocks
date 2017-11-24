@@ -33,6 +33,8 @@ class dataSet():
             self.resizing = js['resizing']
             self.train_size = js['train_size']
             self.test_size = js['test_size']
+            self.target_list = js['target_list']
+            self.score_bottom_line = js['score_bottom_line']
         self.width, self.height = self.resizing
 
     def temp_load_data(self, dir='bnb.p'):

@@ -34,13 +34,8 @@ class two_layer_CNN:
         W3 = tf.get_variable("W3", shape=[w * h * 64, n_class], initializer=initializer)
         b = tf.Variable(tf.random_normal([n_class]))
         logits = tf.matmul(L2_flat, W3) + b
-        self._prediction = tf.argmax(input= logits, axis = -1)
+        self._hypothesis = tf.nn.softmax(logits)
+        self._prediction = tf.argmax(input=logits, axis=-1)
 
-        xentropy = tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=y_one_hot)
-        self._loss = tf.reduce_mean(xentropy, name="loss")
-
-    def model_save(self): # 소희
-        pass
-
-    def model_load(self): # 소희
-        pass
+        self._xentropy = tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=y_one_hot)
+        self._loss = tf.reduce_mean(self._xentropy, name="loss")

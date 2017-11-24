@@ -1,11 +1,13 @@
 {
     "label_dic" : {
-        "0" : 0,
-        "1" : 1
+        "Non-Braille-Blocks" : 0,
+        "Braille-Blocks" : 1
     },
+    "target_list" : ["Braille-Blocks"],
     "resizing" : [32, 32],
     "train_size" : 900,
     "test_size" : 100,
+    "score_bottom_line" : 0.9999,
     "ss_dic" : {
     	"scale" : 100,
     	"sigma" : 0.5,
