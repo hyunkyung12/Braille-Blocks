@@ -17,7 +17,7 @@ def draw_rectangle(img, region, label='', display=False):
     draw = ImageDraw.Draw(temp_img)
     x, y, w, h = region
     draw.rectangle((x, y, x+w, y+h), outline='red')
-    draw.text((x,y), label, fill='red')
+    #draw.text((x,y), label, fill='red')
 
     if display:
         temp_img.show()
