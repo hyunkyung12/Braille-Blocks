@@ -4,7 +4,7 @@
         "Braille-Blocks" : 1
     },
     "target_list" : ["Braille-Blocks"],
-    "resizing" : [32, 32],
+    "resizing" : [64, 64],
     "train_size" : 900,
     "test_size" : 100,
     "score_bottom_line" : 0.9999,

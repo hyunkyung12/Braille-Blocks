@@ -17,7 +17,7 @@ def draw_rectangle(img, region, label='', display=False):
     draw = ImageDraw.Draw(temp_img)
     x, y, w, h = region
     draw.rectangle((x, y, x+w, y+h), outline='red')
-    #draw.text((x,y), label, fill='red')
+    draw.text((x,y), label, fill='red')
 
     if display:
         temp_img.show()
@@ -63,3 +63,32 @@ def refining_ss_regions(ss_regions):
         candidates.add(r['rect'])
 
     return np.array(list(candidates))
+
+def CNN_classifier(img, softmax_classifier, input_size, label_dic, boundary):
+    softmax_score = softmax_classifier(img)[0]
+    ind = np.argmax(softmax_score)
+    if softmax_score[ind] > boundary:
+        return list(label_dic.keys())[ind]
+    return None
+
+def hog(img):    
+    from skimage.feature import hog
+    from skimage import color, exposure
+
+    image = color.rgb2gray(img)
+    
+    fd, hog_image = hog(image, orientations=8, pixels_per_cell=(16, 16), cells_per_block=(1, 1), visualise=True)
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4))
+
+    ax1.axis('off')
+    ax1.imshow(image, cmap=plt.cm.gray)
+    ax1.set_title('Input image')
+
+    # Rescale histogram for better display
+    hog_image_rescaled = exposure.rescale_intensity(hog_image, in_range=(0, 0.02))
+
+    ax2.axis('off')
+    ax2.imshow(hog_image_rescaled, cmap=plt.cm.gray)
+    ax2.set_title('Histogram of Oriented Gradients')
+    plt.show()
