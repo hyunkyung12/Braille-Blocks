@@ -21,6 +21,7 @@ class Solver:
         self.dataset = dataset
         self.batch_x, self.batch_y = [], []
         self.val_x, self.val_y = self.dataset.test_image, self.dataset.test_label
+        
 
     def train(self, epoch=200, batch_size=128, lr = 1e-2, verbose=True, print_frequency=10):
         self.batch_size = batch_size
@@ -77,12 +78,12 @@ class Solver:
         plt.show()
 
 
-    def model_save(self):
+    def model_save(self, save_dir="saved"):
         saver = tf.train.Saver()
-        if not os.path.isdir("saved"):
-            os.mkdir("saved")
-        saver.save(self._sess, "saved/train")
+        if not os.path.isdir(save_dir):
+            os.mkdir(save_dir)
+        saver.save(self._sess, save_dir+"/train")
 
-    def model_load(self):
+    def model_load(self, load_dir="saved"):
         saver = tf.train.Saver()
-        saver.restore(self._sess, tf.train.latest_checkpoint("saved"))
+        saver.restore(self._sess, tf.train.latest_checkpoint(load_dir))

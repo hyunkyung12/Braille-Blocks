@@ -1,16 +1,30 @@
 {
     "label_dic" : {
-        "Non-Braille-Blocks" : 0,
-        "Braille-Blocks" : 1
+        "Braille-Blocks" : 0,
+        "non-Braille-Blocks" : 1,
+        "car" : 2,
+        "wall" : 3,
+        "person_top" : 4,
+        "person_bottom" : 5
     },
     "target_list" : ["Braille-Blocks"],
     "resizing" : [64, 64],
-    "train_size" : 900,
-    "test_size" : 100,
-    "score_bottom_line" : 0.9999,
+    "test_rate" : 0.1,
+    "score_bottom_line" : 0.9,
+    "lr" : 0.00001,
+    "batch_size" : 128,
+    "sw_dic" : {
+        "boundary" : 0.3
+    },
     "ss_dic" : {
     	"scale" : 100,
     	"sigma" : 0.5,
-    	"min_size" : 10
+    	"min_size" : 10,
+        "window_size" : [[64,64]]
+    },
+    "hog_dic" : {
+        "block_width" : 16,
+        "block_height" : 16,
+        "n_orient" : 8
     }
 }
